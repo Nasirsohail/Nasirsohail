@@ -1,0 +1,12 @@
+library(robotstxt)
+path<-paths_allowed("https://www.rottentomatoes.com/top/bestofrt/top_100_animation_movies/")
+library(rvest)
+link<-"https://www.rottentomatoes.com/top/bestofrt/top_100_animation_movies/"
+web<-read_html(link)
+library(dplyr)
+movie_name<-web%>%html_nodes("#top_movies_main .articleLink")%>%html_text()
+movie_rating<-web%>%html_nodes("#top_movies_main .tMeterScore")%>%html_text()
+View(movie_rating)
+View(movie_name)
+movie_IMDB<-data.frame(movie_rating,movie_name)
+View(movie_IMDB)
